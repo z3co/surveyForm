@@ -28,7 +28,7 @@ function updateDB(updatedRecord, nameDB, uniqueIdentifier = 'id') {
     console.error("No existing data found");
     return;  
   }
-  const indexToUpdate = existingData.findIndex(record => record[uniqueIdentifier] === updateRecord[uniqueIdentifier]);
+  const indexToUpdate = existingData.findIndex(record => record[uniqueIdentifier] === updatedRecord[uniqueIdentifier]);
 
   if (indexToUpdate === -1) {
     console.error("Record not foundfor update");
