@@ -5,6 +5,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(cookieParser());
+app.use("/api/auth", require("./Auth/Route"));
 const User = require("./model/user.js");
 const PORT = 5000;
 
@@ -20,6 +21,7 @@ function main() {
   dao.appendDB("db.json", newUser);
 
   console.log(newUser);
+  console.log(newUser.id);
 
   console.log(dao.readDB("db.json"));
 
