@@ -1,6 +1,6 @@
 # surveyForm
 It is a self hosted website for creating and answering surveys.
-## Instalation
+## Installation
 For installing you need to have docker and docker compose installed, both come with docker desktop. 
 Then you just run:
 ```bash
