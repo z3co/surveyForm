@@ -1,4 +1,4 @@
-const db = require("./dao.js");
+const dao = require("./dao.js");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const app = express();
@@ -9,31 +9,30 @@ const User = require("./model/user.js");
 const PORT = 5000;
 
 function main() {
-  
-  let info = db.readDB("db.json");
+  let info = dao.readDB("db.json");
 
   if (info === null) {
     info = [];
-  };
+  }
 
-  const newUser = new User("Jeppe", db.findValidId(info));
+  const newUser = new User("Jeppe", dao.findValidId(info));
 
-  db.appendDB("db.json", newUser);
+  dao.appendDB("db.json", newUser);
 
   console.log(newUser);
 
-  console.log(db.readDB("db.json"));
+  console.log(dao.readDB("db.json"));
 
   const updatedUser = {
-    "id": 1,
-    "correct": 5
+    id: 1,
+    correct: 5,
   };
 
-  db.updateDB(updatedUser, "db.json");
+  dao.updateDB(updatedUser, "db.json");
 
-  info = db.readDB("db.json");
+  info = dao.readDB("db.json");
 
-  console.log("updated info:")
+  console.log("updated info:");
   console.log(info);
 }
 
@@ -42,8 +41,8 @@ app.get("/", (req, res) => {
   main();
 });
 
-const Server = app.listen(PORT, () => 
-  console.log(`Server listening on port ${PORT}`)
+const Server = app.listen(PORT, () =>
+  console.log(`Server listening on port ${PORT}`),
 );
 
 process.on("unhandledRejection", (err) => {
@@ -52,4 +51,3 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
-
