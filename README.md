@@ -4,7 +4,7 @@ It is a self hosted website for creating and answering surveys.
 For installing you need to have docker and docker compose installed, both come with docker desktop. 
 Then you just run:
 ```bash
-docker compose up -d
+docker compose up -d --build
 ```
 ## Usage
 To access the server just go to localhost:5000, if you want access from other places you can port forward. I would recomend using twingate, for accessing it outside your local network for its security and because it is mostly selfhosted.
