@@ -2,6 +2,7 @@ const dao = require("./dao.js");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const app = express();
+const path = require("path");
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(cookieParser());
@@ -38,10 +39,7 @@ function main() {
   console.log(info);
 }
 
-app.get("/", (req, res) => {
-  res.send("Hello user");
-  main();
-});
+app.get("/", (req, res) => res.render("home"));
 
 const Server = app.listen(PORT, () =>
   console.log(`Server listening on port ${PORT}`),

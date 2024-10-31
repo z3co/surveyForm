@@ -9,13 +9,13 @@ exports.register = async (req, res, next) => {
 	const { username } = req.body;
 	try {
 		let data = dao.readDB("db.json");
-    if (data === null) {
-      data = [];
-    };
+		if (data === null) {
+			data = [];
+		}
 		const newUser = new User(username, dao.findValidId(data));
 		await dao.appendDB("db.json", newUser);
 		const maxAge = 3 * 60 * 60;
-    console.log(newUser.id);
+		console.log(newUser.id);
 		const token = jwt.sign({ id: newUser.id, username }, jwtSecret, {
 			expiresIn: maxAge,
 		});
@@ -23,10 +23,10 @@ exports.register = async (req, res, next) => {
 			httpOnly: true,
 			maxAge: maxAge * 1000,
 		});
-    res.send(201).json({
-      message: "User created successfully",
-      user: newUser.id,
-    });
+		res.status(201).json({
+			message: "User created successfully",
+			user: newUser.id,
+		});
 	} catch (error) {
 		res.status(401).json({
 			message: "Error while creating user",

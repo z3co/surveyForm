@@ -72,4 +72,23 @@ function appendDB(nameDB, newData) {
 	console.log(info);
 }
 
+function findById(data, id) {
+	if (!data) {
+		console.error("data is null pls provide valid data");
+		return null;
+	}
+	try {
+		let user = null;
+		for (let i = 0; i < data.length; i++) {
+			if (data[i].id === id) {
+				user = data[i];
+			}
+		}
+		return user;
+	} catch (error) {
+		console.error("A problem occured while finding by id");
+		return null;
+	}
+}
+
 module.exports = { readDB, writeDB, updateDB, findValidId, appendDB };
