@@ -1,8 +1,7 @@
 const User = require("../model/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const jwtSecret =
-	"0b8ae16af9c1099b78fbdc038259aac2c3bc1b2631efac43dc56caed1f99f25200807463";
+const jwtSecret = process.env.JWTSECRET;
 const dao = require("../dao.js");
 
 exports.register = async (req, res, next) => {
@@ -12,6 +11,9 @@ exports.register = async (req, res, next) => {
 		if (data === null) {
 			data = [];
 		}
+    if (!username || username === null) {
+      throw "No username provided";
+    };
 		const newUser = new User(username, dao.findValidId(data));
 		await dao.appendDB("db.json", newUser);
 		const maxAge = 3 * 60 * 60;
@@ -30,7 +32,7 @@ exports.register = async (req, res, next) => {
 	} catch (error) {
 		res.status(401).json({
 			message: "Error while creating user",
-			error: error.message,
+			error: error,
 		});
 	}
 };

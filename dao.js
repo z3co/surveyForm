@@ -91,4 +91,4 @@ function findById(data, id) {
 	}
 }
 
-module.exports = { readDB, writeDB, updateDB, findValidId, appendDB };
+module.exports = { readDB, writeDB, updateDB, findValidId, appendDB, findById };
