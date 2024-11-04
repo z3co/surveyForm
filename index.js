@@ -3,6 +3,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const app = express();
 const path = require("path");
+app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(cookieParser());
@@ -40,6 +41,8 @@ function main() {
 }
 
 app.get("/", (req, res) => res.render("home"));
+
+app.get("/survey", (req, res) => res.render("survey"));
 
 const Server = app.listen(PORT, () =>
   console.log(`Server listening on port ${PORT}`),
